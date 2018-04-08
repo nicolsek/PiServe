@@ -1,0 +1,6 @@
+{
+	"config": {
+		"interface": "", 
+		"port": 8080
+	}
+}
