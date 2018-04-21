@@ -19,7 +19,12 @@ You're going to need...
 
 * Python3, currently working on Python2 compatibility.
 * Permission from your sys-admin if needed.
-* An understanding of setting up small servers and ports.
+* An understanding of setting up small servers and ports.\
+
+### Testing
+
+* Allow executable permissions on the test.sh script. `chmod +x test.sh`
+* Execute the script. `./test.sh`
 
 ### Installing
 

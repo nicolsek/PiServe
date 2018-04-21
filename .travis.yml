@@ -1,0 +1,14 @@
+language: python
+
+python: # Currently only testing on python3
+  - "3.x"
+
+install:
+  - pip install -r testing/requirements.txt
+
+script:
+  - chmod +x test.sh
+  - test.sh
+  
+git:
+  depth: 1
