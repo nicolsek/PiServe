@@ -21,7 +21,7 @@ class Server:
 	def recv(self, conn, buffer):
 		data = conn.recv(buffer)
 
-		if sys.version_info > 2:
+		if sys.version_info[0] > 2:
 			data = data.decode()
 		
 		return data
@@ -42,7 +42,6 @@ class Server:
 			except:
 				conn.close()
 				self.socket.close()
-
 				fail("Could not recieve data from connection.")
 
 			print(data)

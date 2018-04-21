@@ -6,7 +6,10 @@ import sys
 
 def fail(msg):
     print("[!] " + msg)
-    sys.exit(0)
+    sys.exit()
+
+def inform(msg):
+    print("[*] " + msg)
 
 class Client:
     def __init__(self, address, port):
@@ -20,16 +23,15 @@ class Client:
             data = data.encode()
 
         conn.send(data)
-        conn.close()    
 
     def serve(self, URL):
         try: 
-            conn = self.socket.connect((self.address, self.port))
+            self.socket.connect((self.address, self.port))
         except:
             fail("Could not connect to server.")
         
-        self.send(conn, URL)
-        conn.close()
+        self.send(self.socket, URL)
+        self.socket.close()
 
 def parseJSON(jsonObj, key):
     return jsonObj[key]
