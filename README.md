@@ -1,4 +1,4 @@
-# Pi Serve
+# Pi Serve [![Build Status](https://travis-ci.org/nicolsek/PiServe.svg?branch=master)](https://travis-ci.org/nicolsek/PiServe)
 
 Using the Python built in tiny-httpd this will serve up my pages to go. Utilized with my Raspberry Pi listening on my home-network.
 
