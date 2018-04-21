@@ -4,6 +4,13 @@ import socket
 import json
 import sys
 
+def fail(msg):
+	print("[!] " + msg)
+	sys.exit()
+
+def inform(msg):
+	print("[*] " + msg)
+
 class Server:
 	def __init__(self, interface, port):
 		self.interface = interface
@@ -11,31 +18,34 @@ class Server:
 
 		self.socket = socket.socket()
 
-	def serve(URL):
-		os.makedirs('repo')
-	
-	def disconnect(self, conn):	
-		conn.close()
+	def recv(self, conn, buffer):
+		data = conn.recv(buffer)
 
-	def recv(data):
-		data = self.socket(4096)
-
-		if (sys.version[0] > 2):
+		if sys.version_info > 2:
 			data = data.decode()
-	
-		return data	
+		
+		return data
 
 	def listen(self):
-		self.socket.bind((self.interface, self.port))
-		self.socket.listen(1)
+		try:
+			self.socket.bind((self.interface, self.port))
+			self.socket.listen(1)
+		except:
+			fail("Could not bind or listen to interface.")
+		
+		inform("Listening on interface: [" + interface + "]")
+		conn, addr = self.socket.accept()
 
-		print('Listening on ', self.interface, 'at', str(self.port))
-
-		addr, conn = self.socket.accept()
-	
 		with conn:
-			data = recv(data)
-			self.serve(data)
+			try:
+				data = self.recv(conn, 4096)
+			except:
+				conn.close()
+				self.socket.close()
+
+				fail("Could not recieve data from connection.")
+
+			print(data)
 
 def loadFile():
 	with open('config.json', 'r') as fileObj:
