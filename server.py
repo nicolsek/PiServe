@@ -1,8 +1,17 @@
 # server.py -- The server always listening... Forever.
 
+# TODO ------ Cross compatibility from python3 to python2.
+
+import http.server
+import socketserver
+
+# TODO ------ Cross compatibility from python3 to python2.
+
+import subprocess
 import socket
 import json
 import sys
+import os
 
 def fail(msg):
 	print("[!] " + msg)
@@ -26,6 +35,22 @@ class Server:
 		
 		return data
 
+	def serve(self, URL):
+		self.socket.close()
+
+		subprocess.call(["rm", "-rf", "repo/"])
+		subprocess.call(["mkdir", "repo"])
+		subprocess.call(["git", "clone", URL, "repo"])
+
+		os.chdir("repo")
+
+		handler = http.server.SimpleHTTPRequestHandler
+
+		with socketserver.TCPServer((self.interface, self.port), handler) as httpd:
+			httpd.serve_forever()
+
+			inform("Serving at " + self.interface + " on " + self.port)
+		
 	def listen(self):
 		try:
 			self.socket.bind((self.interface, self.port))
@@ -44,7 +69,7 @@ class Server:
 				self.socket.close()
 				fail("Could not recieve data from connection.")
 
-			print(data)
+		self.serve(data)
 
 def loadFile():
 	with open('config.json', 'r') as fileObj:
@@ -61,4 +86,4 @@ if __name__ == "__main__":
 	interface, port = parseJSON(config, 'interface'), parseJSON(config, 'port')
 
 	server = Server(interface, port)
-	server.listen() 
+	server.listen()
