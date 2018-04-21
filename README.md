@@ -33,7 +33,7 @@ You're going to need...
 
 ## Authors
 
-* **Nicole Tusek** - *Developing* - [PurpleBooth](https://github.com/Nicolsek)
+* **Nicole Tusek** - *Developing* - [Nicolsek](https://github.com/Nicolsek)
 
 ## License
 
