@@ -1,10 +1,10 @@
-# Server.py -- The server always listening... Forever.
+# server.py -- The server always listening... Forever.
 
 import socket
 import json
 import sys
 
-class Server {
+class Server:
 	def __init__(self, interface, port):
 		self.interface = interface
 		self.port = int(port)
@@ -13,7 +13,6 @@ class Server {
 
 	def serve(URL):
 		os.makedirs('repo')
-		subprocess.run(['git clone', URL + ' repo'])
 	
 	def disconnect(self, conn):	
 		conn.close()
@@ -27,15 +26,16 @@ class Server {
 		return data	
 
 	def listen(self):
-		self.socket.bind((self.interface, self.port));
+		self.socket.bind((self.interface, self.port))
 		self.socket.listen(1)
-		
+
+		print('Listening on ', self.interface, 'at', str(self.port))
+
 		addr, conn = self.socket.accept()
 	
 		with conn:
 			data = recv(data)
 			self.serve(data)
-}
 
 def loadFile():
 	with open('config.json', 'r') as fileObj:

@@ -3,7 +3,6 @@ PiServe
 > Serves up web pages on my Pi from a git url.
 ---
 
-
 Usage
 ===
 ```bash
