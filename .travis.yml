@@ -5,9 +5,6 @@ python: # Currently only testing on python3
   - 3.5
   - 3.6
 
-install:
-  - pip install -r testing/requirements.txt
-
 script:
   - chmod +x test.sh
   - test.sh
