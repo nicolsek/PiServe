@@ -7,9 +7,7 @@ python: # Currently only testing on python3
 
 script:
   - chmod +x test.sh
-  - touch expected.md
-  - ./test.sh > output.md
-  - diff output.md expected.md
+  - ./test.sh
 
 git:
   depth: 1
