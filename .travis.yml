@@ -7,7 +7,7 @@ python: # Currently only testing on python3
 
 script:
   - chmod +x test.sh
-  - test.sh
+  - ./test.sh
 
 git:
   depth: 1
